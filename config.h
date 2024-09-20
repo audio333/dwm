@@ -3,7 +3,8 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "librewolf"
+#define BROWSERPRI "brave-browser"
+#define BROWSERSEC "google-chrome"
 
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -156,20 +157,22 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
 	{ MODKEY,			XK_q,          killclient,             {0} },
-	{ MODKEY|ShiftMask,		XK_q,          spawn,                  {.v = (const char*[]){ "sysact", NULL } } },
-	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSER, NULL } } },
-	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
+	{ MODKEY|ShiftMask,		XK_F4,         quit,                   {0} },
+	/* { MODKEY|ShiftMask,		XK_q,          spawn,                  {.v = (const char*[]){ "sysact", NULL } } }, */
+	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSERPRI, NULL } } },
+	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ BROWSERSEC, NULL } } },
+	{ MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } },
 
-	{ MODKEY,			XK_r,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "lfub", NULL } } },
-	{ MODKEY|ShiftMask,		XK_r,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
-	{ MODKEY,			XK_t,          setlayout,              {.v = &layouts[0]} }, /* tile */
-	{ MODKEY|ShiftMask,		XK_t,          setlayout,              {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "lf", NULL } } },
+	{ MODKEY,			XK_g,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
+	{ MODKEY,			XK_e,          setlayout,              {.v = &layouts[1]} }, /* bstack */
+	{ MODKEY|ShiftMask,		XK_e,          setlayout,              {.v = &layouts[0]} }, /* tile */
 	{ MODKEY,			XK_y,          setlayout,              {.v = &layouts[2]} }, /* spiral */
 	{ MODKEY|ShiftMask,		XK_y,          setlayout,              {.v = &layouts[3]} }, /* dwindle */
-	{ MODKEY,			XK_u,          setlayout,              {.v = &layouts[4]} }, /* deck */
-	{ MODKEY|ShiftMask,		XK_u,          setlayout,              {.v = &layouts[5]} }, /* monocle */
-	{ MODKEY,			XK_i,          setlayout,              {.v = &layouts[6]} }, /* centeredmaster */
-	{ MODKEY|ShiftMask,		XK_i,          setlayout,              {.v = &layouts[7]} }, /* centeredfloatingmaster */
+	{ MODKEY,			XK_t,          setlayout,              {.v = &layouts[4]} }, /* deck */
+	{ MODKEY|ShiftMask,		XK_t,          setlayout,              {.v = &layouts[5]} }, /* monocle */
+	{ MODKEY,			XK_r,          setlayout,              {.v = &layouts[6]} }, /* centeredmaster */
+	{ MODKEY|ShiftMask,		XK_r,          setlayout,              {.v = &layouts[7]} }, /* centeredfloatingmaster */
 	{ MODKEY,			XK_o,          incnmaster,             {.i = +1 } },
 	{ MODKEY|ShiftMask,		XK_o,          incnmaster,             {.i = -1 } },
 
@@ -184,18 +187,18 @@ static const Key keys[] = {
 
 	{ MODKEY,			XK_f,          togglefullscr,          {0} },
 	{ MODKEY|ShiftMask,		XK_f,          setlayout,              {.v = &layouts[8]} },
-	{ MODKEY,			XK_g,          shiftview,              { .i = -1 } },
-	{ MODKEY|ShiftMask,		XK_g,          shifttag,               { .i = -1 } },
+	{ MODKEY,			XK_u,          shiftview,              { .i = -1 } }, 
+	/* { MODKEY|ShiftMask,		XK_g,          shifttag,               { .i = -1 } }, */
 	{ MODKEY,			XK_h,          setmfact,               {.f = -0.05} },
 	/* J and K are automatically bound above in STACKEYS */
 	{ MODKEY,			XK_l,          setmfact,               {.f = +0.05} },
-	{ MODKEY,			XK_semicolon,  shiftview,              { .i = 1 } },
-	{ MODKEY|ShiftMask,		XK_semicolon,  shifttag,               { .i = 1 } },
-	{ MODKEY,			XK_apostrophe, togglescratch,          {.ui = 1} },
+	{ MODKEY,			XK_i,  	       shiftview,              { .i = 1 } },
+	/* { MODKEY|ShiftMask,		XK_semicolon,  shifttag,               { .i = 1 } }, */
+	{ MODKEY,			XK_c, 	       togglescratch,          {.ui = 1} },
 	/* { MODKEY|ShiftMask,		XK_apostrophe, spawn,                  SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_apostrophe, togglesmartgaps,        {0} },
-	{ MODKEY,			XK_Return,     spawn,                  {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_Return,     togglescratch,          {.ui = 0} },
+	{ MODKEY,			XK_Return,     togglescratch,          {.ui = 0} },
+	{ MODKEY|ShiftMask,		XK_Return,     spawn,                  {.v = termcmd } },
 
 	{ MODKEY,			XK_z,          incrgaps,               {.i = +3 } },
 	/* { MODKEY|ShiftMask,		XK_z,          spawn,                  SHCMD("") }, */
@@ -206,8 +209,8 @@ static const Key keys[] = {
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,          togglebar,              {0} },
 	/* { MODKEY|ShiftMask,		XK_b,          spawn,                  SHCMD("") }, */
-	{ MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } },
-	{ MODKEY|ShiftMask,		XK_n,          spawn,                  SHCMD(TERMINAL " -e newsboat ; pkill -RTMIN+6 dwmblocks") },
+	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } }, */
+	/* { MODKEY|ShiftMask,		XK_n,          spawn,                  SHCMD(TERMINAL " -e newsboat ; pkill -RTMIN+6 dwmblocks") }, */
 
 	{ MODKEY,			XK_Left,       focusmon,               {.i = -1 } },
 	{ MODKEY|ShiftMask,		XK_Left,       tagmon,                 {.i = -1 } },
@@ -221,7 +224,7 @@ static const Key keys[] = {
 
 	{ MODKEY,			XK_F1,         spawn,                  SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") },
 
-	{ MODKEY,			XK_F4,         spawn,                  SHCMD(TERMINAL " -e pulsemixer; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_m,          spawn,                  SHCMD(TERMINAL " -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
 	{ MODKEY,			XK_space,      zoom,                   {0} },
 	{ MODKEY|ShiftMask,		XK_space,      togglefloating,         {0} },
