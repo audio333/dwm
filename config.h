@@ -36,10 +36,14 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
+const char *spcmd4[] = {TERMINAL, "-n", "splf", "-g", "120x34", "-e", "lf", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spcalc",      spcmd2},
+	{"spcmus",      spcmd3},
+	{"splf",      	spcmd4},
 };
 
 /* tagging */
@@ -58,6 +62,8 @@ static const Rule rules[] = {
 	{ TERMCLASS,  "bg",        NULL,       	 1 << 7,      0,           1,          0,         -1 },
 	{ TERMCLASS,  "spterm",    NULL,       	 SPTAG(0),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "spcalc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "spcmus",    NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "splf",      NULL,       	 SPTAG(3),    1,           1,          0,         -1 },
 };
 
 /* layout(s) */
@@ -166,9 +172,9 @@ static const Key keys[] = {
 	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSERPRI, NULL } } },
 	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ BROWSERSEC, NULL } } },
 	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } }, */
-	{ MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "vim", "-c", "VimwikiIndex", NULL } } },
+	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "vim", "-c", "VimwikiIndex", NULL } } }, */
 
-	{ MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "lf", NULL } } },
+	/* { MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "lf", NULL } } }, */
 	{ MODKEY,			XK_g,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
 	{ MODKEY,			XK_e,          setlayout,              {.v = &layouts[1]} }, /* bstack */
 	{ MODKEY|ShiftMask,		XK_e,          setlayout,              {.v = &layouts[0]} }, /* tile */
@@ -199,7 +205,9 @@ static const Key keys[] = {
 	{ MODKEY,			XK_l,          setmfact,               {.f = +0.05} },
 	{ MODKEY,			XK_i,  	       shiftview,              { .i = 1 } },
 	/* { MODKEY|ShiftMask,		XK_semicolon,  shifttag,               { .i = 1 } }, */
-	{ MODKEY,			XK_c, 	       togglescratch,          {.ui = 1} },
+	{ MODKEY,			XK_n, 	       togglescratch,          {.ui = 1} },
+	{ MODKEY,			XK_c, 	       togglescratch,          {.ui = 2} },
+	{ MODKEY,			XK_d, 	       togglescratch,          {.ui = 3} },
 	/* { MODKEY|ShiftMask,		XK_apostrophe, spawn,                  SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_apostrophe, togglesmartgaps,        {0} },
 	{ MODKEY,			XK_Return,     togglescratch,          {.ui = 0} },
