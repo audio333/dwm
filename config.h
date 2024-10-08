@@ -175,7 +175,7 @@ static const Key keys[] = {
 	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "vim", "-c", "VimwikiIndex", NULL } } }, */
 
 	/* { MODKEY,			XK_d,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "lf", NULL } } }, */
-	{ MODKEY,			XK_g,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } },
+	/* { MODKEY,			XK_g,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "htop", NULL } } }, */
 	{ MODKEY,			XK_e,          setlayout,              {.v = &layouts[1]} }, /* bstack */
 	{ MODKEY|ShiftMask,		XK_e,          setlayout,              {.v = &layouts[0]} }, /* tile */
 	/* { MODKEY,			XK_y,          setlayout,              {.v = &layouts[2]} },  spiral */
@@ -218,7 +218,6 @@ static const Key keys[] = {
 	{ MODKEY,			XK_x,          incrgaps,               {.i = -3 } },
 	/* { MODKEY|ShiftMask,		XK_x,          spawn,                  SHCMD("") }, */
 
-	/* { MODKEY|ShiftMask,		XK_c,          spawn,                  SHCMD("") }, */
 	/* V is automatically bound above in STACKKEYS */
 	{ MODKEY,			XK_b,          togglebar,              {0} },
 	/* { MODKEY|ShiftMask,		XK_b,          spawn,                  SHCMD("") }, */
