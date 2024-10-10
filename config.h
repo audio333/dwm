@@ -167,7 +167,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
 	{ MODKEY,			XK_q,          killclient,             {0} },
-	{ MODKEY|ShiftMask,		XK_F4,         quit,                   {0} },
+	{ MODKEY|ShiftMask,		XK_F3,         quit,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_q,          spawn,                  {.v = (const char*[]){ "sysact", NULL } } }, */
 	{ MODKEY,			XK_w,          spawn,                  {.v = (const char*[]){ BROWSERPRI, NULL } } },
 	{ MODKEY|ShiftMask,		XK_w,          spawn,                  {.v = (const char*[]){ BROWSERSEC, NULL } } },
@@ -184,8 +184,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_t,          setlayout,              {.v = &layouts[5]} }, /* monocle */
 	{ MODKEY,			XK_r,          setlayout,              {.v = &layouts[6]} }, /* centeredmaster */
 	{ MODKEY|ShiftMask,		XK_r,          setlayout,              {.v = &layouts[7]} }, /* centeredfloatingmaster */
-	{ MODKEY,			XK_o,          incnmaster,             {.i = -1 } },
 	{ MODKEY,			XK_y,          incnmaster,             {.i = +1 } },
+	{ MODKEY|ShiftMask,		XK_y,          incnmaster,             {.i = -1 } },
 
 	{ MODKEY,			XK_backslash,  view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_backslash,  spawn,                  SHCMD("") }, */
