@@ -64,6 +64,7 @@ static const Rule rules[] = {
 	{ TERMCLASS,  "spcalc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "spcmus",    NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "splf",      NULL,       	 SPTAG(3),    1,           1,          0,         -1 },
+	{ "mpv",      NULL,        NULL,       	 1,    	      1,           0,          0,         -1 },
 };
 
 /* layout(s) */
