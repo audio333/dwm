@@ -38,12 +38,14 @@ const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 const char *spcmd3[] = {TERMINAL, "-n", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
 const char *spcmd4[] = {TERMINAL, "-n", "splf", "-g", "120x34", "-e", "lf", NULL };
+const char *spcmd5[] = {TERMINAL, "-n", "sptmux", "-g", "120x34", "-e", "tmux", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spcalc",      spcmd2},
 	{"spcmus",      spcmd3},
 	{"splf",      	spcmd4},
+	{"sptmux",      spcmd5},
 };
 
 /* tagging */
@@ -64,7 +66,8 @@ static const Rule rules[] = {
 	{ TERMCLASS,  "spcalc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "spcmus",    NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "splf",      NULL,       	 SPTAG(3),    1,           1,          0,         -1 },
-	{ "mpv",      NULL,        NULL,       	 1,    	      1,           0,          0,         -1 },
+	{ TERMCLASS,  "sptmux",    NULL,       	 SPTAG(4),    1,           1,          0,         -1 },
+	{ "mpv",      NULL,        NULL,       	 2,    	      1,           0,          0,         -1 },
 };
 
 /* layout(s) */
@@ -165,6 +168,13 @@ static const Key keys[] = {
 	{ MODKEY,			XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)") },
 
+	{ MODKEY|ControlMask,		XK_u,          spawn,                  SHCMD("cmus-remote -u; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_s,          spawn,                  SHCMD("cmus-remote -s; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_n,          spawn,                  SHCMD("cmus-remote -n; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_r,          spawn,                  SHCMD("cmus-remote -r; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_minus,      spawn,                  SHCMD("cmus-remote -v -5%; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_equal,      spawn,                  SHCMD("cmus-remote -v +5%; kill -44 $(pidof dwmblocks)") },
+
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
 	{ MODKEY,			XK_q,          killclient,             {0} },
@@ -209,6 +219,7 @@ static const Key keys[] = {
 	{ MODKEY,			XK_n, 	       togglescratch,          {.ui = 1} },
 	{ MODKEY,			XK_c, 	       togglescratch,          {.ui = 2} },
 	{ MODKEY,			XK_d, 	       togglescratch,          {.ui = 3} },
+	{ MODKEY|ShiftMask,		XK_d, 	       togglescratch,          {.ui = 4} },
 	/* { MODKEY|ShiftMask,		XK_apostrophe, spawn,                  SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_apostrophe, togglesmartgaps,        {0} },
 	{ MODKEY,			XK_Return,     togglescratch,          {.ui = 0} },
@@ -220,7 +231,7 @@ static const Key keys[] = {
 	/* { MODKEY|ShiftMask,		XK_x,          spawn,                  SHCMD("") }, */
 
 	/* V is automatically bound above in STACKKEYS */
-	{ MODKEY,			XK_b,          togglebar,              {0} },
+	{ MODKEY | ShiftMask,		XK_b,          togglebar,              {0} },
 	/* { MODKEY|ShiftMask,		XK_b,          spawn,                  SHCMD("") }, */
 	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "nvim", "-c", "VimwikiIndex", NULL } } }, */
 	/* { MODKEY|ShiftMask,		XK_n,          spawn,                  SHCMD(TERMINAL " -e newsboat ; pkill -RTMIN+6 dwmblocks") }, */
@@ -234,6 +245,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Up,    shifttag,               { .i = -1 } },
 	{ MODKEY,			XK_Page_Down,  shiftview,              { .i = +1 } },
 	{ MODKEY|ShiftMask,		XK_Page_Down,  shifttag,               { .i = +1 } },
+	{ MODKEY,			XK_Insert,     spawn,                  SHCMD("xdotool type $(grep -v '^#' ~/.local/share/saved/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 
 	{ MODKEY,			XK_F1,         spawn,                  SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") },
 
