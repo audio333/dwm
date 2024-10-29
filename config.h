@@ -168,12 +168,12 @@ static const Key keys[] = {
 	{ MODKEY,			XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)") },
 
-	{ MODKEY|ControlMask,		XK_u,          spawn,                  SHCMD("cmus-remote -u; kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_s,          spawn,                  SHCMD("cmus-remote -s; kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_n,          spawn,                  SHCMD("cmus-remote -n; kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_r,          spawn,                  SHCMD("cmus-remote -r; kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_minus,      spawn,                  SHCMD("cmus-remote -v -5%; kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_equal,      spawn,                  SHCMD("cmus-remote -v +5%; kill -45 $(pidof dwmblocks)") },
+	/*{ MODKEY|ControlMask,		XK_u,          spawn,                  SHCMD("cmus-remote -u; kill -45 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ControlMask,		XK_s,          spawn,                  SHCMD("cmus-remote -s; kill -45 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ControlMask,		XK_n,          spawn,                  SHCMD("cmus-remote -n; kill -45 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ControlMask,		XK_r,          spawn,                  SHCMD("cmus-remote -r; kill -45 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ControlMask,		XK_minus,      spawn,                  SHCMD("cmus-remote -v -5%; kill -45 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ControlMask,		XK_equal,      spawn,                  SHCMD("cmus-remote -v +5%; kill -45 $(pidof dwmblocks)") },*/
 
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
