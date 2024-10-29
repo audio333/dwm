@@ -36,16 +36,16 @@ typedef struct {
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {TERMINAL, "-n", "spcmus", "-g", "120x34", "-e", "cmus", NULL };
-const char *spcmd4[] = {TERMINAL, "-n", "splf", "-g", "120x34", "-e", "lf", NULL };
-const char *spcmd5[] = {TERMINAL, "-n", "sptmux", "-g", "120x34", "-e", "tmux", NULL };
+const char *spcmd3[] = {TERMINAL, "-n", "splf", "-g", "120x34", "-e", "lf", NULL };
+const char *spcmd4[] = {TERMINAL, "-n", "sptmux", "-g", "120x34", "-e", "tmux", NULL };
+/* const char *spcmd5[] = {TERMINAL, "-n", "spcmus", "-g", "120x34", "-e", "cmus", NULL }; */
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spcalc",      spcmd2},
-	{"spcmus",      spcmd3},
-	{"splf",      	spcmd4},
-	{"sptmux",      spcmd5},
+	{"splf",      	spcmd3},
+	{"sptmux",      spcmd4},
+	/* {"spcmus",      spcmd5}, */
 };
 
 /* tagging */
@@ -64,9 +64,9 @@ static const Rule rules[] = {
 	{ TERMCLASS,  "bg",        NULL,       	 1 << 7,      0,           1,          0,         -1 },
 	{ TERMCLASS,  "spterm",    NULL,       	 SPTAG(0),    1,           1,          0,         -1 },
 	{ TERMCLASS,  "spcalc",    NULL,       	 SPTAG(1),    1,           1,          0,         -1 },
-	{ TERMCLASS,  "spcmus",    NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
-	{ TERMCLASS,  "splf",      NULL,       	 SPTAG(3),    1,           1,          0,         -1 },
-	{ TERMCLASS,  "sptmux",    NULL,       	 SPTAG(4),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "splf",      NULL,       	 SPTAG(2),    1,           1,          0,         -1 },
+	{ TERMCLASS,  "sptmux",    NULL,       	 SPTAG(3),    1,           1,          0,         -1 },
+	/* { TERMCLASS,  "spcmus",    NULL,       	 SPTAG(4),    1,           1,          0,         -1 }, */
 	{ "mpv",      NULL,        NULL,       	 2,    	      1,           0,          0,         -1 },
 };
 
@@ -168,12 +168,12 @@ static const Key keys[] = {
 	{ MODKEY,			XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)") },
 
-	{ MODKEY|ControlMask,		XK_u,          spawn,                  SHCMD("cmus-remote -u; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_s,          spawn,                  SHCMD("cmus-remote -s; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_n,          spawn,                  SHCMD("cmus-remote -n; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_r,          spawn,                  SHCMD("cmus-remote -r; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_minus,      spawn,                  SHCMD("cmus-remote -v -5%; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ControlMask,		XK_equal,      spawn,                  SHCMD("cmus-remote -v +5%; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_u,          spawn,                  SHCMD("cmus-remote -u; kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_s,          spawn,                  SHCMD("cmus-remote -s; kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_n,          spawn,                  SHCMD("cmus-remote -n; kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_r,          spawn,                  SHCMD("cmus-remote -r; kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_minus,      spawn,                  SHCMD("cmus-remote -v -5%; kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ControlMask,		XK_equal,      spawn,                  SHCMD("cmus-remote -v +5%; kill -45 $(pidof dwmblocks)") },
 
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
@@ -217,9 +217,9 @@ static const Key keys[] = {
 	{ MODKEY,			XK_i,  	       shiftview,              { .i = 1 } },
 	/* { MODKEY|ShiftMask,		XK_semicolon,  shifttag,               { .i = 1 } }, */
 	{ MODKEY,			XK_n, 	       togglescratch,          {.ui = 1} },
-	{ MODKEY,			XK_c, 	       togglescratch,          {.ui = 2} },
-	{ MODKEY,			XK_d, 	       togglescratch,          {.ui = 3} },
-	{ MODKEY|ShiftMask,		XK_d, 	       togglescratch,          {.ui = 4} },
+	{ MODKEY,			XK_d, 	       togglescratch,          {.ui = 2} },
+	{ MODKEY|ShiftMask,		XK_d, 	       togglescratch,          {.ui = 3} },
+	/* { MODKEY,			XK_c, 	       togglescratch,          {.ui = 4} }, */
 	/* { MODKEY|ShiftMask,		XK_apostrophe, spawn,                  SHCMD("") }, */
 	{ MODKEY|ShiftMask,		XK_apostrophe, togglesmartgaps,        {0} },
 	{ MODKEY,			XK_Return,     togglescratch,          {.ui = 0} },
