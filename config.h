@@ -3,8 +3,8 @@
 /* Constants */
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSERPRI "brave-browser"
-#define BROWSERSEC "google-chrome"
+#define BROWSERPRI "librewolf"
+#define BROWSERSEC "brave-browser"
 
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
@@ -236,7 +236,8 @@ static const Key keys[] = {
 	{ MODKEY,			XK_Insert,     spawn,                  SHCMD("xdotool type $(grep -v '^#' ~/.local/share/saved/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 
 	{ MODKEY,			XK_F1,         spawn,                  SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") },
-	{ MODKEY|ShiftMask,		XK_F2,         spawn,                  SHCMD("cmus-remote -s; pkill -RTMIN+11 dwmblocks; playerctl --player=mpv play-pause; pkill -RTMIN+12 dwmblocks; slock & xset dpms force off") },
+	{ MODKEY|ShiftMask,		XK_F2,         spawn,                  SHCMD("[ $(printf 'Yes\\nNo' | dmenu -i -p 'Pause Media Player?') = 'Yes' ] && cmus-remote -U && pkill -RTMIN+11 dwmblocks && playerctl --player=mpv pause && pkill -RTMIN+12 dwmblocks ; slock & xset dpms force off || slock & xset dpms force off") },
+
 	{ MODKEY|ShiftMask,		XK_F3,         quit,                   {0} },
 	{ MODKEY|ShiftMask,		XK_F4,         spawn,                  SHCMD("$HOME/.local/bin/sysact") },
 	{ MODKEY,			XK_F5,         xrdb,                   {.v = NULL } },
