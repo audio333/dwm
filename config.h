@@ -163,10 +163,14 @@ static const Key keys[] = {
 	TAGKEYS(			XK_9,          8)
 	{ MODKEY,			XK_0,	       view,                   {.ui = ~0 } },
 	{ MODKEY|ShiftMask,		XK_0,	       tag,                    {.ui = ~0 } },
-	{ MODKEY,			XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY,			XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)") },
+	/* { MODKEY,			XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY|ShiftMask,		XK_minus,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY,			XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }, */
+	/* { MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)") }, */
+	{ MODKEY,			XK_minus,      spawn,                  SHCMD("pulsemixer --change-volume -5; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,		XK_minus,      spawn,                  SHCMD("pulsemixer --change-volume -15; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_equal,      spawn,                  SHCMD("pulsemixer --change-volume +5; kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,		XK_equal,      spawn,                  SHCMD("pulsemixer --change-volume +15; kill -44 $(pidof dwmblocks)") },
 
 	{ MODKEY,			XK_Tab,        view,                   {0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,	       spawn,                  SHCMD("") }, */
@@ -221,7 +225,8 @@ static const Key keys[] = {
 	/* { MODKEY,			XK_n,          spawn,                  SHCMD(TERMINAL " -e newsboat ; pkill -RTMIN+6 dwmblocks") }, */
 	/* { MODKEY,			XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "vim", "-c", "VimwikiIndex", NULL } } }, */
 	/* { MODKEY|ShiftMask,		XK_n,          spawn,                  {.v = (const char*[]){ TERMINAL, "-e", "sudo", "nmtui", NULL } } }, */
-	{ MODKEY,			XK_m,          spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") },
+	/* { MODKEY,			XK_m,          spawn,                  SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") }, */
+	{ MODKEY,			XK_m,          spawn,                  SHCMD("pulsemixer --toggle-mute ; kill -44 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_m,          spawn,                  SHCMD(TERMINAL " -e pulsemixer; kill -44 $(pidof dwmblocks)") },
 
 	{ MODKEY,			XK_Left,       focusmon,               {.i = -1 } },
